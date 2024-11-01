@@ -1,0 +1,36 @@
+@if(lista.length > 4){
+     <p>Sim</p>
+}@else{
+    <p>Não</p>
+}
+
+@for(item of lista; track item.nome){
+    <li>{{item.nome | titlecase | reduzNome}}</li>
+}@empty{
+    <li>Não tem itens</li>
+}
+
+<br><br>
+@for(item of lista; track item.nome){
+    <li [ngClass]="{'green' : item.idade > 20, 'red' : item.idade <= 20}">{{item.nome}}</li>
+}@empty{
+    <li>Não tem itens</li>
+}
+
+<br><br>
+
+@if(!loading){
+    @for(item of lista; track item.nome){
+    <li [ngClass]="{'green' : item.idade > 20, 'red' : item.idade <= 20}">{{item.nome}}</li>
+}@empty{
+    <li>Não tem itens</li>
+}
+}@else{
+    <p>Buscando</p>
+}
+
+<br>
+<button (click)="buscarMais()">{{loading ? 'Buscando' : 'Buscar mais' }}</button>
+
+
+<button routerLink="/unoeste-primaria">Voltar</button>
